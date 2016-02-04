@@ -16,6 +16,7 @@ type client struct {
 	room *room
 }
 
+// client reads from webpage sends to channel
 func (c *client) read() {
 	for {
 		if _, msg, err := c.socket.ReadMessage(); err == nil {
@@ -28,6 +29,7 @@ func (c *client) read() {
 	c.socket.Close()
 }
 
+//
 // EDU: research range functionality
 func (c *client) write() {
 	for msg := range c.send {
@@ -36,4 +38,8 @@ func (c *client) write() {
 		}
 	}
 	c.socket.Close()
+}
+
+func (c *client) remotePrint() {
+	println("I am printing from another file")
 }
